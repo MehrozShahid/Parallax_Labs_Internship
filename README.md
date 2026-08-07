@@ -1,6 +1,6 @@
 # Parallax Labs Internship
 
-This repository contains my weekly tasks completed during the Parallax Labs Internship. Each week's work is organized in a separate folder and builds on the previous week's implementation.
+This repository contains my weekly tasks completed during the Parallax Labs Internship. Each week's work is organized in a separate folder.
 
 ---
 
