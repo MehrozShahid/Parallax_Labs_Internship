@@ -12,6 +12,7 @@ Parallax_Labs_Internship/
 ├── Week1_Environment_Setup_Data_Acquisition/
 ├── Week2_Data-Cleaning_Preprocessing/
 ├── Week3_Chunking_Embeddings/
+├── Week4_Vector_Database/
 └── README.md
 ```
 
@@ -55,6 +56,22 @@ Parallax_Labs_Internship/
 * Added unit tests for the chunking function.
 
 ---
+
+## Week 04 - Vector Database (ChromaDB)
+
+### Completed Tasks
+
+* Set up and configured ChromaDB locally.
+* Created a persistent ChromaDB collection.
+* Ingested text chunks and their embeddings into ChromaDB.
+* Implemented basic semantic search.
+* Implemented Top-K retrieval for search queries.
+* Tested retrieval performance using 10 different queries.
+* Measured retrieval latency for each query.
+* Saved retrieval performance results in `retrieval_log.csv`.
+* Handled empty database cases.
+* Handled empty and malformed queries.
+* Handled invalid `top_k` values.
 
 ## Dependencies
 
