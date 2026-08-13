@@ -9,7 +9,7 @@ This repository contains my weekly tasks completed during the Parallax Labs Inte
 ```text
 Parallax_Labs_Internship/
 │
-├── Week1_Environment_Setup_Data_Acquisition/
+├── Week1_Environment_Data_Acquisition/
 ├── Week2_Data-Cleaning_Preprocessing/
 ├── Week3_Chunking_Embeddings/
 ├── Week4_Vector_Database/
