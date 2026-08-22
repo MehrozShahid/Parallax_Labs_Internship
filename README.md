@@ -13,6 +13,7 @@ Parallax_Labs_Internship/
 ├── Week2_Data-Cleaning_Preprocessing/
 ├── Week3_Chunking_Embeddings/
 ├── Week4_Vector_Database/
+├── Week5_Retrieval_Evaluation/
 └── README.md
 ```
 
