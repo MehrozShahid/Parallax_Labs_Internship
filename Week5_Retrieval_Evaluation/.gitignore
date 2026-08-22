@@ -1,0 +1,19 @@
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# ChromaDB databases
+chroma_db/
+
+# Chunk-size experiment databases
+chunk_experiments/chroma_250/
+chunk_experiments/chroma_500/
+chunk_experiments/chroma_750/
+chunk_experiments/chroma_1000/

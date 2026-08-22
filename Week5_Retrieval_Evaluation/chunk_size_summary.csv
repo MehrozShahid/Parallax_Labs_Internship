@@ -1,0 +1,5 @@
+chunk_size,number_of_chunks,database_path,collection_name,time_seconds
+250,134107,./chunk_experiments\chroma_250,ag_news_250,2536.19
+500,120523,./chunk_experiments\chroma_500,ag_news_500,1524.24
+750,120073,./chunk_experiments\chroma_750,ag_news_750,1912.47
+1000,120000,./chunk_experiments\chroma_1000,ag_news_1000,3303.05

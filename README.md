@@ -73,6 +73,24 @@ Parallax_Labs_Internship/
 * Handled empty and malformed queries.
 * Handled invalid `top_k` values.
 
+# Week 05 - Retrieval Evaluation
+
+### Completed Tasks
+
+- Created a manual test set containing 20 user queries.
+- Identified expected ground-truth chunks for the test queries.
+- Implemented retrieval evaluation using **Precision@K**.
+- Implemented retrieval evaluation using **Recall@K**.
+- Tested different K values: **1, 3, 5, and 10**.
+- Experimented with different chunk sizes.
+- Tested chunk sizes of **250, 500, 750, and 1000** characters.
+- Created separate ChromaDB databases for chunk-size experiments.
+- Compared retrieval performance across different configurations.
+- Documented the evaluation results.
+- Refined the retrieval logic based on the evaluation findings.
+- Selected **TOP_K = 5** for the refined retrieval implementation.
+- Implemented the final refined retrieval script using ChromaDB and Sentence Transformers.
+
 ## Dependencies
 
 The project uses the following Python libraries:
