@@ -92,24 +92,56 @@ Parallax_Labs_Internship/
 - Selected **TOP_K = 5** for the refined retrieval implementation.
 - Implemented the final refined retrieval script using ChromaDB and Sentence Transformers.
 
+## Week 06 - RAG Generation with OpenRouter
+
+### Completed Tasks
+
+- Integrated the OpenRouter API.
+- Connected the OpenRouter LLM with the Week 5 retrieval system.
+- Reused the existing ChromaDB database.
+- Reused the all-MiniLM-L6-v2 embedding model.
+- Retrieved the top 5 relevant chunks for each query.
+- Implemented a system prompt.
+- Implemented context injection.
+- Added clear instructions for the language model.
+- Implemented prompt engineering best practices.
+- Added API error handling.
+- Added missing API key handling.
+- Added authentication error handling.
+- Added rate-limit handling.
+- Added request/token-limit error handling.
+- Added timeout handling.
+- Added connection error handling.
+- Added malformed response handling.
+- Added server error handling.
+- Measured retrieval latency.
+- Measured generation latency.
+- Measured total end-to-end latency.
+- Added logging for RAG queries and performance.
+- Created a command-line interface.
+- Tested successful API requests.
+- Tested API error handling.
+- Tested timeout and connection handling.
+- Tested CLI input handling.
+
 ## Dependencies
 
 The project uses the following Python libraries:
 
-* pandas
-* spaCy
-* NLTK
-* sentence-transformers
-* langchain-text-splitters
-* ChromaDB
-* torch
+- pandas
+- spaCy
+- NLTK
+- sentence-transformers
+- langchain-text-splitters
+- ChromaDB
+- PyTorch
+- requests
+- python-dotenv
 
-Install the dependencies using:
+Install the required libraries using:
 
 ```bash
-pip install pandas spacy nltk sentence-transformers chromadb langchain-text-splitters torch
-```
-
+pip install pandas spacy nltk sentence-transformers chromadb langchain-text-splitters torch requests python-dotenv
 ---
 
 ## Running the Project

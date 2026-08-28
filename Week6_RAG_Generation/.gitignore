@@ -1,0 +1,16 @@
+# Keep the API key out of GitHub
+.env
+
+# Local Python environment
+.venv/
+venv/
+
+# Python temporary files
+__pycache__/
+*.pyc
+
+# Application logs
+logs/
+
+# Local ChromaDB files
+chroma_db/
