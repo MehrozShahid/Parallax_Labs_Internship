@@ -14,6 +14,7 @@ Parallax_Labs_Internship/
 ├── Week3_Chunking_Embeddings/
 ├── Week4_Vector_Database/
 ├── Week5_Retrieval_Evaluation/
+├── Week6_RAG_Generation/   
 └── README.md
 ```
 
