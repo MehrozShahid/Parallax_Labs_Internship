@@ -75,6 +75,8 @@ Parallax_Labs_Internship/
 * Handled empty and malformed queries.
 * Handled invalid `top_k` values.
 
+---
+
 # Week 05 - Retrieval Evaluation
 
 ### Completed Tasks
@@ -92,6 +94,8 @@ Parallax_Labs_Internship/
 - Refined the retrieval logic based on the evaluation findings.
 - Selected **TOP_K = 5** for the refined retrieval implementation.
 - Implemented the final refined retrieval script using ChromaDB and Sentence Transformers.
+
+---
 
 ## Week 06 - RAG Generation with OpenRouter
 
