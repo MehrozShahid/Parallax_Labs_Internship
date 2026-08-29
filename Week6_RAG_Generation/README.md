@@ -851,6 +851,4 @@ Logging
 ```
 
 Week 6 therefore completes the generation stage of the RAG system and provides a working end-to-end pipeline from user query to generated answer.
-
-```
     
