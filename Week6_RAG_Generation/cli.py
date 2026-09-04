@@ -1,11 +1,10 @@
 from rag import answer_question
 
-
 def main():
 
     print()
     print("=" * 60)
-    print("             WEEK 6 RAG SYSTEM")
+    print("             WEEK 7 RAG SYSTEM")
     print("=" * 60)
 
     print()
@@ -16,11 +15,11 @@ def main():
 
     while True:
 
-        # Get a question from the user
+        # Get question
         question = input("Question: ").strip()
 
 
-        # Allow the user to close the program
+        # Exit program
         if question.lower() in ["exit", "quit"]:
 
             print()
@@ -29,7 +28,7 @@ def main():
             break
 
 
-        # Don't send an empty question to the RAG system
+        # Check empty question
         if not question:
 
             print("Please enter a question.")
@@ -42,44 +41,90 @@ def main():
         print("Searching documents...")
 
 
-        # Run retrieval and answer generation
-        result = answer_question(
-            question
-        )
+        # Run RAG system
+        result = answer_question(question)
 
+
+        # Answer
 
         print()
         print("-" * 60)
         print("ANSWER")
         print("-" * 60)
 
-        print(
-            result["answer"]
-        )
+        print(result["answer"])
 
+        # Sources
 
-        # Show how long each part of the pipeline took
         print()
         print("-" * 60)
+        print("SOURCES")
+        print("-" * 60)
+
+
+        if result["sources"]:
+
+            for source in result["sources"]:
+
+                print("-", source)
+
+        else:
+
+            print("No sources.")
+
+        # Hallucination check
+
+        print()
+        print("-" * 60)
+        print("HALLUCINATION CHECK")
+        print("-" * 60)
+
+
+        if result["supported"]:
+
+            print(
+                "Answer is supported by the "
+                "retrieved context."
+            )
+
+        else:
+
+            print(
+                "Answer is not supported by the "
+                "retrieved context."
+            )
+
+
+        # Latency
+
+        print()
+        print("-" * 60)
+        print("LATENCY")
+        print("-" * 60)
+
 
         print(
             f"Retrieval time : "
             f"{result['retrieval_time']:.4f} seconds"
         )
 
+
         print(
             f"Generation time: "
             f"{result['generation_time']:.4f} seconds"
         )
+
 
         print(
             f"Total latency  : "
             f"{result['total_time']:.4f} seconds"
         )
 
+
         print("-" * 60)
         print()
 
 
 if __name__ == "__main__":
+
     main()

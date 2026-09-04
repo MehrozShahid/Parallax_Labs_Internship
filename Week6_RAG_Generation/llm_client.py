@@ -10,8 +10,9 @@ from config import (
 
 def generate_answer(system_prompt, user_prompt):
 
-    # Check if the API key was loaded correctly
+    # Check API key
     if not OPENROUTER_API_KEY:
+
         return "ERROR: OpenRouter API key is missing."
 
 
@@ -23,16 +24,21 @@ def generate_answer(system_prompt, user_prompt):
 
     data = {
         "model": LLM_MODEL,
+
         "messages": [
             {
                 "role": "system",
                 "content": system_prompt
             },
+
             {
                 "role": "user",
                 "content": user_prompt
             }
-        ]
+        ],
+
+        # Lower randomness helps reduce hallucinations
+        "temperature": 0
     }
 
 
@@ -46,12 +52,11 @@ def generate_answer(system_prompt, user_prompt):
         )
 
 
-        # Print the status so we can see what OpenRouter returns
         print("Status code:", response.status_code)
 
 
-        # If there is an error, show OpenRouter's actual message
         if response.status_code != 200:
+
             print("OpenRouter response:")
             print(response.text)
 
@@ -61,16 +66,16 @@ def generate_answer(system_prompt, user_prompt):
             )
 
 
-        # Convert successful response to JSON
         result = response.json()
 
 
-        # Check that an answer was returned
         if "choices" not in result:
+
             return "ERROR: Unexpected response from OpenRouter."
 
 
         if not result["choices"]:
+
             return "ERROR: OpenRouter returned no answer."
 
 
@@ -80,6 +85,7 @@ def generate_answer(system_prompt, user_prompt):
 
 
         if not answer:
+
             return "ERROR: No answer was returned."
 
 
