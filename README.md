@@ -1,6 +1,6 @@
 # Parallax Labs Internship
 
-This repository contains my weekly tasks completed during the Parallax Labs Internship. Each week's work is organized in a separate folder, except for Week 7, which continues the RAG project from Week 6.
+This repository contains my weekly tasks completed during the Parallax Labs Internship. Each week's work is organized in a separate folder.
 
 ---
 
@@ -22,6 +22,8 @@ Parallax_Labs_Internship/
 ├── Week5_Retrieval_Evaluation/
 
 ├── Week6_RAG_Generation/
+
+├── Week7_Hallucination_Detection_Mitigation/
 
 └── README.md
 ```
@@ -143,7 +145,8 @@ Parallax_Labs_Internship/
 
 ### Completed Tasks
 
-* Continued the RAG system developed during Week 6.
+* Created a separate Week 7 project based on the Week 6 RAG system.
+* Continued using the existing ChromaDB retrieval approach.
 * Added instructions to the LLM to use only the retrieved context.
 * Added `"I don't know."` behavior when the answer is not available in the context.
 * Added protection against unsupported answers.
@@ -158,7 +161,7 @@ Parallax_Labs_Internship/
 * Added logging for unsupported generated answers.
 * Updated the command-line interface to display sources and hallucination-check status.
 * Tested the system with questions outside the knowledge base.
-* Kept the existing Week 5 retrieval system and ChromaDB database.
+* Kept the Week 6 project unchanged while developing the Week 7 improvements.
 
 ---
 
@@ -196,10 +199,18 @@ cd Week3_Chunking_Embeddings
 python main.py
 ```
 
-For Week 6 and Week 7, the RAG system is continued in the same folder:
+To run Week 6:
 
 ```bash
 cd Week6_RAG_Generation
+
+python cli.py
+```
+
+To run Week 7:
+
+```bash
+cd Week7_Hallucination_Detection_Mitigation
 
 python cli.py
 ```
@@ -214,7 +225,7 @@ This project uses the **AG News** dataset for text preprocessing, chunking, embe
 
 ## RAG Pipeline
 
-The overall RAG system follows these steps:
+The RAG system developed during Weeks 6 and 7 follows these main steps:
 
 ```text
 User Question
@@ -236,7 +247,7 @@ Hallucination Check
 Final Answer
 ```
 
-If the answer cannot be supported by the retrieved context, the system returns:
+If the answer cannot be supported by the retrieved context, the Week 7 system returns:
 
 ```text
 I don't know.
