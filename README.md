@@ -1,6 +1,6 @@
 # Parallax Labs Internship
 
-This repository contains my weekly tasks completed during the Parallax Labs Internship. Each week's work is organized in a separate folder.
+This repository contains my weekly tasks completed during the Parallax Labs Internship. Each week's work is organized in a separate folder, except for Week 7, which continues the RAG project from Week 6.
 
 ---
 
@@ -8,13 +8,21 @@ This repository contains my weekly tasks completed during the Parallax Labs Inte
 
 ```text
 Parallax_Labs_Internship/
+
 │
+
 ├── Week1_Environment_Data_Acquisition/
+
 ├── Week2_Data-Cleaning_Preprocessing/
+
 ├── Week3_Chunking_Embeddings/
+
 ├── Week4_Vector_Database/
+
 ├── Week5_Retrieval_Evaluation/
-├── Week6_RAG_Generation/   
+
+├── Week6_RAG_Generation/
+
 └── README.md
 ```
 
@@ -77,23 +85,23 @@ Parallax_Labs_Internship/
 
 ---
 
-# Week 05 - Retrieval Evaluation
+## Week 05 - Retrieval Evaluation
 
 ### Completed Tasks
 
-- Created a manual test set containing 20 user queries.
-- Identified expected ground-truth chunks for the test queries.
-- Implemented retrieval evaluation using **Precision@K**.
-- Implemented retrieval evaluation using **Recall@K**.
-- Tested different K values: **1, 3, 5, and 10**.
-- Experimented with different chunk sizes.
-- Tested chunk sizes of **250, 500, 750, and 1000** characters.
-- Created separate ChromaDB databases for chunk-size experiments.
-- Compared retrieval performance across different configurations.
-- Documented the evaluation results.
-- Refined the retrieval logic based on the evaluation findings.
-- Selected **TOP_K = 5** for the refined retrieval implementation.
-- Implemented the final refined retrieval script using ChromaDB and Sentence Transformers.
+* Created a manual test set containing 20 user queries.
+* Identified expected ground-truth chunks for the test queries.
+* Implemented retrieval evaluation using **Precision@K**.
+* Implemented retrieval evaluation using **Recall@K**.
+* Tested different K values: **1, 3, 5, and 10**.
+* Experimented with different chunk sizes.
+* Tested chunk sizes of **250, 500, 750, and 1000** characters.
+* Created separate ChromaDB databases for chunk-size experiments.
+* Compared retrieval performance across different configurations.
+* Documented the evaluation results.
+* Refined the retrieval logic based on the evaluation findings.
+* Selected **TOP_K = 5** for the refined retrieval implementation.
+* Implemented the final refined retrieval script using ChromaDB and Sentence Transformers.
 
 ---
 
@@ -101,52 +109,79 @@ Parallax_Labs_Internship/
 
 ### Completed Tasks
 
-- Integrated the OpenRouter API.
-- Connected the OpenRouter LLM with the Week 5 retrieval system.
-- Reused the existing ChromaDB database.
-- Reused the all-MiniLM-L6-v2 embedding model.
-- Retrieved the top 5 relevant chunks for each query.
-- Implemented a system prompt.
-- Implemented context injection.
-- Added clear instructions for the language model.
-- Implemented prompt engineering best practices.
-- Added API error handling.
-- Added missing API key handling.
-- Added authentication error handling.
-- Added rate-limit handling.
-- Added request/token-limit error handling.
-- Added timeout handling.
-- Added connection error handling.
-- Added malformed response handling.
-- Added server error handling.
-- Measured retrieval latency.
-- Measured generation latency.
-- Measured total end-to-end latency.
-- Added logging for RAG queries and performance.
-- Created a command-line interface.
-- Tested successful API requests.
-- Tested API error handling.
-- Tested timeout and connection handling.
-- Tested CLI input handling.
+* Integrated the OpenRouter API.
+* Connected the OpenRouter LLM with the Week 5 retrieval system.
+* Reused the existing ChromaDB database.
+* Reused the all-MiniLM-L6-v2 embedding model.
+* Retrieved the top 5 relevant chunks for each query.
+* Implemented a system prompt.
+* Implemented context injection.
+* Added clear instructions for the language model.
+* Implemented prompt engineering best practices.
+* Added API error handling.
+* Added missing API key handling.
+* Added authentication error handling.
+* Added rate-limit handling.
+* Added request/token-limit error handling.
+* Added timeout handling.
+* Added connection error handling.
+* Added malformed response handling.
+* Added server error handling.
+* Measured retrieval latency.
+* Measured generation latency.
+* Measured total end-to-end latency.
+* Added logging for RAG queries and performance.
+* Created a command-line interface.
+* Tested successful API requests.
+* Tested API error handling.
+* Tested timeout and connection handling.
+* Tested CLI input handling.
+
+---
+
+## Week 07 - Hallucination Detection & Mitigation
+
+### Completed Tasks
+
+* Continued the RAG system developed during Week 6.
+* Added instructions to the LLM to use only the retrieved context.
+* Added `"I don't know."` behavior when the answer is not available in the context.
+* Added protection against unsupported answers.
+* Added handling for off-topic questions.
+* Implemented structured JSON output from the LLM.
+* Added answer and source information to the structured response.
+* Added a `supported` field to identify whether an answer is supported by the context.
+* Implemented a hallucination checking step.
+* Compared generated answers against the retrieved context.
+* Rejected answers that were not supported by the retrieved information.
+* Returned `"I don't know."` when an answer could not be supported.
+* Added logging for unsupported generated answers.
+* Updated the command-line interface to display sources and hallucination-check status.
+* Tested the system with questions outside the knowledge base.
+* Kept the existing Week 5 retrieval system and ChromaDB database.
+
+---
 
 ## Dependencies
 
 The project uses the following Python libraries:
 
-- pandas
-- spaCy
-- NLTK
-- sentence-transformers
-- langchain-text-splitters
-- ChromaDB
-- PyTorch
-- requests
-- python-dotenv
+* pandas
+* spaCy
+* NLTK
+* sentence-transformers
+* langchain-text-splitters
+* ChromaDB
+* PyTorch
+* requests
+* python-dotenv
 
 Install the required libraries using:
 
 ```bash
 pip install pandas spacy nltk sentence-transformers chromadb langchain-text-splitters torch requests python-dotenv
+```
+
 ---
 
 ## Running the Project
@@ -157,14 +192,55 @@ For example, to run Week 3:
 
 ```bash
 cd Week3_Chunking_Embeddings
+
 python main.py
+```
+
+For Week 6 and Week 7, the RAG system is continued in the same folder:
+
+```bash
+cd Week6_RAG_Generation
+
+python cli.py
 ```
 
 ---
 
 ## Dataset
 
-This project uses the **AG News** dataset for text preprocessing, chunking, and embedding generation.
+This project uses the **AG News** dataset for text preprocessing, chunking, embedding generation, retrieval, and RAG-based question answering.
+
+---
+
+## RAG Pipeline
+
+The overall RAG system follows these steps:
+
+```text
+User Question
+      ↓
+Question Embedding
+      ↓
+ChromaDB Retrieval
+      ↓
+Top 5 Relevant Chunks
+      ↓
+Prompt Construction
+      ↓
+LLM Generation
+      ↓
+Structured JSON Response
+      ↓
+Hallucination Check
+      ↓
+Final Answer
+```
+
+If the answer cannot be supported by the retrieved context, the system returns:
+
+```text
+I don't know.
+```
 
 ---
 
