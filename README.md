@@ -25,6 +25,8 @@ Parallax_Labs_Internship/
 │
 ├── Week8_NLP_Topic_Modeling/
 │
+├── Week9_NLP_Analysis/
+│
 └── README.md
 ```
 
@@ -211,6 +213,106 @@ SUCCESS: All returned documents belong to topic_id = 0
 
 ---
 
+# Week 09 - NLP Analysis: Named Entity Recognition
+
+### Completed Tasks
+
+* Implemented **Named Entity Recognition (NER)** using spaCy.
+* Created a manually labeled evaluation set containing **50 samples**.
+* Evaluated NER predictions using **Precision, Recall, and F1-score**.
+* Calculated NER evaluation metrics using True Positives, False Positives, and False Negatives.
+* Applied NER to the complete corpus containing **120,526 documents**.
+* Extracted entities and their corresponding entity types.
+* Stored extracted entity information alongside document chunks.
+* Added `entities` metadata to the existing ChromaDB collection.
+* Added `entity_types` metadata to the existing ChromaDB collection.
+* Reused the existing `ag_news` ChromaDB collection instead of creating a new database.
+* Updated the retrieval logic to optionally boost chunks containing query entities.
+* Implemented entity-based reranking of retrieved chunks.
+* Tested entity-aware retrieval using multiple queries.
+* Evaluated the effect of entity boosting on retrieval rankings.
+* Documented the accuracy and usefulness of the extracted entity metadata.
+
+### NER Evaluation Results
+
+The NER system was evaluated using 50 manually labeled samples.
+
+| Metric          | Result |
+| --------------- | -----: |
+| Samples         |     50 |
+| True Positives  |    174 |
+| False Positives |    111 |
+| False Negatives |     91 |
+| Precision       | 0.6105 |
+| Recall          | 0.6566 |
+| F1-score        | 0.6327 |
+
+### Entity Extraction Results
+
+NER was applied to all **120,526 documents** in the corpus.
+
+```text
+Documents containing detected entities: 118,934
+Documents without detected entities:      1,592
+```
+
+The extracted metadata includes:
+
+```text
+entities
+entity_types
+```
+
+### Entity-Aware Retrieval
+
+The retrieval system was extended to use detected query entities as an additional reranking signal.
+
+The system:
+
+```text
+User Query
+    ↓
+Query Entity Extraction
+    ↓
+ChromaDB Candidate Retrieval
+    ↓
+Entity Matching
+    ↓
+Entity Boost
+    ↓
+Reranking
+    ↓
+Top Results
+```
+
+Five test queries were used to evaluate the entity-aware retrieval:
+
+```text
+Iraq oil
+Microsoft technology
+US economy
+China business
+football players
+```
+
+The experiment showed that rankings changed for **3 out of 5 queries**. Across the evaluated top-5 results, **20 out of 25** contained a matching entity.
+
+These results demonstrate that entity metadata can influence retrieval when relevant entities are detected. The experiment measures retrieval behavior and usefulness; it does not by itself establish an improvement in retrieval accuracy because no manually labeled retrieval ground truth was used for this experiment.
+
+### Limitations
+
+The NER model is a pretrained general-purpose spaCy model and was not specifically trained on the AG News dataset. As a result, some entity predictions can be noisy or incorrectly classified.
+
+The entity-boost mechanism is a heuristic reranking approach rather than a learned ranking model.
+
+The complete Week 9 implementation and evaluation details are available in:
+
+```text
+Week9_NLP_Analysis/README.md
+```
+
+---
+
 # Dependencies
 
 The project uses different Python libraries across the weekly tasks.
@@ -268,7 +370,13 @@ For Week 8, refer to the README inside:
 Week8_NLP_Topic_Modeling/
 ```
 
-for the topic modeling and validation workflow.
+For Week 9, refer to the README inside:
+
+```text
+Week9_NLP_Analysis/
+```
+
+for the NER implementation, evaluation, metadata integration, and entity-aware retrieval workflow.
 
 ---
 
@@ -283,8 +391,10 @@ This project uses the **AG News** dataset for:
 * Retrieval evaluation
 * Retrieval-Augmented Generation
 * Topic modeling
+* Named Entity Recognition
+* Entity-aware retrieval
 
-The corpus used during the topic modeling stage contained **120,526 documents**.
+The corpus used during the NLP analysis stages contained **120,526 documents**.
 
 ---
 
@@ -346,6 +456,33 @@ Topic-Based Filtering
 
 ---
 
+# Named Entity Recognition Pipeline
+
+The Week 9 workflow extends the NLP pipeline with named entity extraction and entity-aware retrieval:
+
+```text
+AG News Corpus
+      ↓
+NER with spaCy
+      ↓
+Entity Extraction
+      ↓
+NER Evaluation
+      ↓
+Entity Metadata
+      ↓
+ChromaDB Integration
+      ↓
+Query Entity Extraction
+      ↓
+Entity-Based Reranking
+      ↓
+Retrieved Results
+```
+
+---
+
 # Author
 
 **Mehroz Shahid**
+
