@@ -1,6 +1,6 @@
 # Parallax Labs Internship
 
-This repository contains my weekly tasks completed during the Parallax Labs Internship. Each week's work is organized in a separate folder.
+This repository contains my weekly tasks and projects completed during the **Parallax Labs Internship**. Each week's work is organized in a separate folder with its own implementation, documentation, and results.
 
 ---
 
@@ -8,29 +8,29 @@ This repository contains my weekly tasks completed during the Parallax Labs Inte
 
 ```text
 Parallax_Labs_Internship/
-
 │
-
 ├── Week1_Environment_Data_Acquisition/
-
+│
 ├── Week2_Data-Cleaning_Preprocessing/
-
+│
 ├── Week3_Chunking_Embeddings/
-
+│
 ├── Week4_Vector_Database/
-
+│
 ├── Week5_Retrieval_Evaluation/
-
+│
 ├── Week6_RAG_Generation/
-
+│
 ├── Week7_Hallucination_Detection_Mitigation/
-
+│
+├── Week8_NLP_Topic_Modeling/
+│
 └── README.md
 ```
 
 ---
 
-## Week 01 - Environment Setup & Data Acquisition
+# Week 01 - Environment Setup & Data Acquisition
 
 ### Completed Tasks
 
@@ -42,7 +42,7 @@ Parallax_Labs_Internship/
 
 ---
 
-## Week 02 - Data Cleaning & Preprocessing
+# Week 02 - Data Cleaning & Preprocessing
 
 ### Completed Tasks
 
@@ -57,7 +57,7 @@ Parallax_Labs_Internship/
 
 ---
 
-## Week 03 - Chunking & Embeddings
+# Week 03 - Chunking & Embeddings
 
 ### Completed Tasks
 
@@ -69,7 +69,7 @@ Parallax_Labs_Internship/
 
 ---
 
-## Week 04 - Vector Database (ChromaDB)
+# Week 04 - Vector Database (ChromaDB)
 
 ### Completed Tasks
 
@@ -87,7 +87,7 @@ Parallax_Labs_Internship/
 
 ---
 
-## Week 05 - Retrieval Evaluation
+# Week 05 - Retrieval Evaluation
 
 ### Completed Tasks
 
@@ -107,14 +107,14 @@ Parallax_Labs_Internship/
 
 ---
 
-## Week 06 - RAG Generation with OpenRouter
+# Week 06 - RAG Generation with OpenRouter
 
 ### Completed Tasks
 
 * Integrated the OpenRouter API.
 * Connected the OpenRouter LLM with the Week 5 retrieval system.
 * Reused the existing ChromaDB database.
-* Reused the all-MiniLM-L6-v2 embedding model.
+* Reused the `all-MiniLM-L6-v2` embedding model.
 * Retrieved the top 5 relevant chunks for each query.
 * Implemented a system prompt.
 * Implemented context injection.
@@ -141,7 +141,7 @@ Parallax_Labs_Internship/
 
 ---
 
-## Week 07 - Hallucination Detection & Mitigation
+# Week 07 - Hallucination Detection & Mitigation
 
 ### Completed Tasks
 
@@ -165,11 +165,60 @@ Parallax_Labs_Internship/
 
 ---
 
-## Dependencies
+# Week 08 - NLP Topic Modeling
 
-The project uses the following Python libraries:
+### Completed Tasks
+
+* Applied **BERTopic** to the complete AG News corpus.
+* Generated topic assignments for the entire corpus.
+* Discovered underlying themes and topic clusters.
+* Generated topic information and representative topic terms.
+* Created visualizations for the discovered topic clusters.
+* Validated topic assignments through manual document review.
+* Reviewed **20 random documents per topic cluster** as part of topic validation.
+* Considered extremely short documents as an edge case.
+* Considered documents containing heavy or specialized jargon as an edge case.
+* Integrated topic information into the existing ChromaDB collection.
+* Added `topic_id` metadata to the documents.
+* Added `topic_name` metadata to the documents.
+* Verified that the topic assignment data matched the **120,526 documents** in ChromaDB.
+* Verified that ChromaDB document IDs followed the expected structure.
+* Tested topic-based filtering using ChromaDB metadata.
+* Confirmed that filtered documents belonged to the requested topic.
+
+### Topic Metadata Example
+
+```text
+topic_id: 0
+topic_name: its | to | on | the | oil
+```
+
+### Topic Filtering Verification
+
+An additional verification test was performed using:
+
+```python
+where={
+    "topic_id": 0
+}
+```
+
+The test successfully returned documents belonging to topic `0`, and all returned documents were verified to contain the expected `topic_id`.
+
+```text
+SUCCESS: All returned documents belong to topic_id = 0
+```
+
+---
+
+# Dependencies
+
+The project uses different Python libraries across the weekly tasks.
+
+Some of the main dependencies include:
 
 * pandas
+* NumPy
 * spaCy
 * NLTK
 * sentence-transformers
@@ -178,16 +227,17 @@ The project uses the following Python libraries:
 * PyTorch
 * requests
 * python-dotenv
+* BERTopic
+* UMAP
+* HDBSCAN
 
-Install the required libraries using:
+Individual weeks may contain additional dependencies in their respective `requirements.txt` files.
 
-```bash
-pip install pandas spacy nltk sentence-transformers chromadb langchain-text-splitters torch requests python-dotenv
-```
+Install the required libraries for a specific week using the instructions provided in that week's README.
 
 ---
 
-## Running the Project
+# Running the Projects
 
 Each week's folder contains its own source code and README with instructions for running that week's task.
 
@@ -195,7 +245,6 @@ For example, to run Week 3:
 
 ```bash
 cd Week3_Chunking_Embeddings
-
 python main.py
 ```
 
@@ -203,7 +252,6 @@ To run Week 6:
 
 ```bash
 cd Week6_RAG_Generation
-
 python cli.py
 ```
 
@@ -211,19 +259,36 @@ To run Week 7:
 
 ```bash
 cd Week7_Hallucination_Detection_Mitigation
-
 python cli.py
 ```
 
+For Week 8, refer to the README inside:
+
+```text
+Week8_NLP_Topic_Modeling/
+```
+
+for the topic modeling and validation workflow.
+
 ---
 
-## Dataset
+# Dataset
 
-This project uses the **AG News** dataset for text preprocessing, chunking, embedding generation, retrieval, and RAG-based question answering.
+This project uses the **AG News** dataset for:
+
+* Text preprocessing
+* Chunking
+* Embedding generation
+* Vector database storage
+* Retrieval evaluation
+* Retrieval-Augmented Generation
+* Topic modeling
+
+The corpus used during the topic modeling stage contained **120,526 documents**.
 
 ---
 
-## RAG Pipeline
+# RAG Pipeline
 
 The RAG system developed during Weeks 6 and 7 follows these main steps:
 
@@ -255,6 +320,32 @@ I don't know.
 
 ---
 
-## Author
+# Topic Modeling Pipeline
+
+The Week 8 topic modeling workflow extends the project with NLP topic discovery:
+
+```text
+AG News Corpus
+      ↓
+Cleaned Documents
+      ↓
+BERTopic
+      ↓
+Topic Assignment
+      ↓
+Topic Validation
+      ↓
+Topic Visualization
+      ↓
+Topic Metadata
+      ↓
+ChromaDB Integration
+      ↓
+Topic-Based Filtering
+```
+
+---
+
+# Author
 
 **Mehroz Shahid**

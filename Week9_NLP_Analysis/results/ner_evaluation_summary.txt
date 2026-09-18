@@ -1,0 +1,14 @@
+NER Evaluation Summary
+======================
+
+Number of samples: 50
+
+Entity-level results:
+True Positives: 174
+False Positives: 111
+False Negatives: 91
+
+Metrics:
+Precision: 0.6105
+Recall: 0.6566
+F1-score: 0.6327
