@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+pydantic
+httpx
+requests
+python-dotenv
+chromadb
+sentence-transformers
+spacy
