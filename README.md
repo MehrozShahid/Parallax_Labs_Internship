@@ -1,10 +1,10 @@
 # Parallax Labs Internship
 
-## RAG-Based News Intelligence System
+# RAG-Based News Intelligence System
 
 This repository contains the complete work completed during my **Parallax Labs Internship**, covering the development of a Retrieval-Augmented Generation (RAG) system using the **AG News dataset**.
 
-The project progresses from data acquisition and preprocessing to vector search, retrieval evaluation, RAG generation, hallucination detection, NLP analysis, API development, and finally complete system evaluation and testing.
+The project progresses from data acquisition and preprocessing to vector search, retrieval evaluation, RAG generation, hallucination detection, NLP analysis, API development, system evaluation and testing, and finally documentation and Demo Day preparation.
 
 ---
 
@@ -30,6 +30,8 @@ Throughout the internship, the system was gradually improved by adding:
 * System evaluation
 * Automated testing
 * Performance analysis
+* Comprehensive documentation
+* Demo Day preparation
 
 ---
 
@@ -37,6 +39,7 @@ Throughout the internship, the system was gradually improved by adding:
 
 ```text
 Parallax_Labs_Internship/
+
 │
 ├── Week1_Environment_Data_Acquisition/
 ├── Week2_Data-Cleaning_Preprocessing/
@@ -49,6 +52,7 @@ Parallax_Labs_Internship/
 ├── Week9_NLP_Analysis/
 ├── Week10_API_Development/
 ├── Week11_System_Testing/
+├── Week12_Documentation_Demo_Day/
 │
 └── README.md
 ```
@@ -287,8 +291,10 @@ Perform deeper NLP analysis on the news dataset using topic modeling.
 
 The topic modeling stage produced:
 
-* **71 topic entries**
-* Approximately **38,315 outlier documents**
+```text
+71 topic entries
+Approximately 38,315 outlier documents
+```
 
 ### Main Outcome
 
@@ -330,8 +336,8 @@ F1 Score:  0.6327
 The dataset contained approximately:
 
 ```text
-Documents with entities:    118,934
-Documents without entities:   1,592
+Documents with entities:     118,934
+Documents without entities:    1,592
 ```
 
 ### Entity-Aware Retrieval
@@ -411,7 +417,7 @@ Week11_System_Testing/
 
 Evaluate and test the complete Week 10 FastAPI RAG system.
 
-Week 11 focuses on measuring the system's **retrieval performance, answer quality, latency, API functionality, concurrent requests, and limitations**.
+Week 11 focused on measuring the system's **retrieval performance, answer quality, latency, API functionality, concurrent requests, and limitations**.
 
 ### Work Completed
 
@@ -484,10 +490,37 @@ The system measures:
 
 ---
 
+## Week 11 Final Performance Results
+
+The 30-question benchmark produced the following results:
+
+| Metric                     |  Result |
+| -------------------------- | ------: |
+| Total Questions            |      30 |
+| Successful Requests        |      25 |
+| Failed Requests            |       5 |
+| Retrieval Accuracy Proxy   |   96.0% |
+| Generation Quality Proxy   |  41.33% |
+| Supported Answer Rate      |   56.0% |
+| Average End-to-End Latency | 23.56 s |
+| Median End-to-End Latency  | 17.47 s |
+| P95 End-to-End Latency     | 55.32 s |
+| Minimum Latency            |  3.76 s |
+| Maximum Latency            | 57.56 s |
+| Average Retrieval Time     | 52.7 ms |
+| Average Generation Time    | 16.76 s |
+
+The five failed requests were associated with HTTP read timeouts during the benchmark.
+
+These metrics are based on the automated Week 11 evaluation and should be interpreted as benchmark results rather than human-quality judgments.
+
+---
+
 # Week 11 Structure
 
 ```text
 Week11_System_Testing/
+
 │
 ├── app/
 │   ├── __init__.py
@@ -565,6 +598,7 @@ The evaluation generates:
 
 ```text
 reports/
+
 ├── evaluation_report.md
 ├── evaluation_report.json
 └── evaluation_results.csv
@@ -581,6 +615,75 @@ Machine-readable evaluation results.
 ### CSV Results
 
 Query-level results suitable for spreadsheet analysis and further processing.
+
+---
+
+# Week 12 — Documentation & Demo Day
+
+### Folder
+
+```text
+Week12_Documentation_Demo_Day/
+```
+
+### Objective
+
+The final week focused on documenting the complete RAG system developed during the internship and preparing the project for Demo Day.
+
+Week 12 uses the completed Week 11 system as the final executable implementation and organizes the supporting documentation needed to understand, run, demonstrate, and evaluate the project.
+
+### Work Completed
+
+* Created a comprehensive final README
+* Documented the complete project architecture
+* Added an architecture diagram
+* Documented API endpoints and example requests
+* Documented expected API outputs
+* Documented final Week 11 performance benchmarks
+* Added setup and running instructions
+* Added Demo Day presentation guidance
+* Documented the final project workflow
+* Documented limitations and future improvements
+* Prepared the project for easier use by another developer
+
+### Week 12 Structure
+
+```text
+Week12_Documentation_Demo_Day/
+
+│
+├── docs/
+│   ├── architecture.md
+│   ├── api_examples.md
+│   └── demo_script.md
+│
+├── images/
+│   └── architecture_diagram.png
+│
+├── README.md
+├── requirements.txt
+├── .env.example
+└── .gitignore
+```
+
+### Documentation
+
+The Week 12 documentation includes:
+
+* `README.md` — complete project documentation
+* `docs/architecture.md` — detailed system architecture
+* `docs/api_examples.md` — API examples and expected responses
+* `docs/demo_script.md` — Demo Day presentation and demonstration steps
+* `images/architecture_diagram.png` — visual system architecture
+* `requirements.txt` — required Python dependencies
+* `.env.example` — required environment variable template
+* `.gitignore` — files excluded from version control
+
+The executable FastAPI application and evaluation system remain in **Week 11**.
+
+### Main Outcome
+
+The internship project was organized into a complete, documented, evaluated, and demonstration-ready RAG system.
 
 ---
 
@@ -610,28 +713,34 @@ The final RAG system developed during the internship follows this architecture:
                  Entity-Aware Retrieval
                            │
                            ▼
-                    Retrieved Context
+                   Retrieved Context
                            │
                            ▼
-                         LLM
+                          LLM
                            │
                            ▼
                    Generated Answer
                            │
                            ▼
-                       FastAPI
+                        FastAPI
                            │
                            ▼
                  Evaluation & Testing
                            │
-                ┌──────────┼──────────┐
-                ▼          ▼          ▼
-             Retrieval  Generation  Latency
-             Evaluation Evaluation  Analysis
-                │          │          │
-                └──────────┼──────────┘
+              ┌────────────┼────────────┐
+              ▼            ▼            ▼
+          Retrieval     Generation    Latency
+          Evaluation    Evaluation    Analysis
+              │            │            │
+              └────────────┼────────────┘
                            ▼
                     Reports & Results
+```
+
+A detailed visual architecture diagram is available in:
+
+```text
+Week12_Documentation_Demo_Day/images/architecture_diagram.png
 ```
 
 ---
@@ -725,15 +834,18 @@ FastAPI API Development
         ↓
 Week 11
 System Evaluation & Testing
+        ↓
+Week 12
+Documentation & Demo Day
 ```
 
 ---
 
 # Key Project Outcomes
 
-By the end of Week 11, the internship project progressed from a raw news dataset to a tested RAG-based API system.
+By the end of Week 12, the internship project progressed from a raw news dataset to a documented, evaluated, tested, and demonstration-ready RAG-based API system.
 
-The final system includes:
+The final project includes:
 
 * Processed AG News data
 * Chunked documents
@@ -755,6 +867,9 @@ The final system includes:
 * Latency analysis
 * JSON, Markdown, and CSV reports
 * Documented system limitations
+* Complete system architecture documentation
+* API documentation
+* Demo Day documentation
 
 ---
 
@@ -783,16 +898,18 @@ The system can be further improved by adding:
 
 This internship project demonstrates the complete development lifecycle of a practical **Retrieval-Augmented Generation system**.
 
-The project started with data acquisition and preprocessing and gradually progressed through embeddings, vector search, retrieval evaluation, LLM generation, hallucination mitigation, NLP analysis, API development, and system testing.
+The project started with data acquisition and preprocessing and gradually progressed through embeddings, vector search, retrieval evaluation, LLM generation, hallucination mitigation, NLP analysis, API development, system testing, and final documentation.
 
-By Week 11, the RAG system had evolved into a **working, evaluated, and tested API-based application**, with automated evaluation reports and test suites providing a foundation for further development and production deployment.
+By Week 12, the RAG system had evolved into a **working, evaluated, tested, documented, and demonstration-ready API-based application**.
+
+The project provides a foundation for further improvements such as human evaluation, stronger retrieval metrics, performance optimization, production deployment, authentication, monitoring, and CI/CD integration.
 
 ---
 
-## Internship
+# Internship
 
 **Parallax Labs Internship**
 
 **Project:** RAG-Based News Intelligence System
 
-**Final Stage:** System Evaluation & Testing
+**Final Stage:** Documentation & Demo Day
