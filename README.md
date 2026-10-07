@@ -1,359 +1,378 @@
 # Parallax Labs Internship
 
-This repository contains my weekly tasks and projects completed during the **Parallax Labs Internship**. Each week's work is organized in a separate folder with its own implementation, documentation, and results.
+## RAG-Based News Intelligence System
+
+This repository contains the complete work completed during my **Parallax Labs Internship**, covering the development of a Retrieval-Augmented Generation (RAG) system using the **AG News dataset**.
+
+The project progresses from data acquisition and preprocessing to vector search, retrieval evaluation, RAG generation, hallucination detection, NLP analysis, API development, and finally complete system evaluation and testing.
 
 ---
 
-## Repository Structure
+# Project Overview
+
+The main project is a **RAG-based News Intelligence System** built using the AG News dataset.
+
+The system processes news articles, converts them into vector embeddings, stores them in a vector database, retrieves relevant information for a user query, and generates an answer using a Large Language Model.
+
+Throughout the internship, the system was gradually improved by adding:
+
+* Data preprocessing
+* Text chunking
+* Embeddings
+* Vector database storage
+* Retrieval evaluation
+* RAG generation
+* Hallucination detection
+* Topic modeling
+* Named Entity Recognition
+* Entity-aware retrieval
+* FastAPI API development
+* System evaluation
+* Automated testing
+* Performance analysis
+
+---
+
+# Repository Structure
 
 ```text
 Parallax_Labs_Internship/
-
 │
 ├── Week1_Environment_Data_Acquisition/
-│
 ├── Week2_Data-Cleaning_Preprocessing/
-│
 ├── Week3_Chunking_Embeddings/
-│
 ├── Week4_Vector_Database/
-│
 ├── Week5_Retrieval_Evaluation/
-│
 ├── Week6_RAG_Generation/
-│
 ├── Week7_Hallucination_Detection_Mitigation/
-│
 ├── Week8_NLP_Topic_Modeling/
-│
 ├── Week9_NLP_Analysis/
-│
 ├── Week10_API_Development/
+├── Week11_System_Testing/
 │
 └── README.md
 ```
 
----
-
-# Week 01 - Environment Setup & Data Acquisition
-
-### Completed Tasks
-
-* Set up the Python development environment.
-* Installed the required libraries.
-* Downloaded and validated the AG News dataset.
-* Performed basic data quality checks.
-* Created a dataset validation report.
+Each week contains the implementation, documentation, and outputs related to that stage of the project.
 
 ---
 
-# Week 02 - Data Cleaning & Preprocessing
+# Week 1 — Environment & Data Acquisition
 
-### Completed Tasks
-
-* Removed HTML tags from the text.
-* Removed special characters.
-* Normalized whitespace.
-* Combined the title and description into a single text field.
-* Removed empty records after cleaning.
-* Applied tokenization and lemmatization using spaCy.
-* Saved the cleaned dataset.
-* Added unit tests for the cleaning functions.
-
----
-
-# Week 03 - Chunking & Embeddings
-
-### Completed Tasks
-
-* Implemented Recursive Character Text Splitting.
-* Generated embeddings using the **all-MiniLM-L6-v2** Sentence Transformer model.
-* Measured embedding generation time for each chunk.
-* Calculated the total indexing time.
-* Added unit tests for the chunking function.
-
----
-
-# Week 04 - Vector Database (ChromaDB)
-
-### Completed Tasks
-
-* Set up and configured ChromaDB locally.
-* Created a persistent ChromaDB collection.
-* Ingested text chunks and their embeddings into ChromaDB.
-* Implemented basic semantic search.
-* Implemented Top-K retrieval for search queries.
-* Tested retrieval performance using 10 different queries.
-* Measured retrieval latency for each query.
-* Saved retrieval performance results in `retrieval_log.csv`.
-* Handled empty database cases.
-* Handled empty and malformed queries.
-* Handled invalid `top_k` values.
-
----
-
-# Week 05 - Retrieval Evaluation
-
-### Completed Tasks
-
-* Created a manual test set containing 20 user queries.
-* Identified expected ground-truth chunks for the test queries.
-* Implemented retrieval evaluation using **Precision@K**.
-* Implemented retrieval evaluation using **Recall@K**.
-* Tested different K values: **1, 3, 5, and 10**.
-* Experimented with different chunk sizes.
-* Tested chunk sizes of **250, 500, 750, and 1000** characters.
-* Created separate ChromaDB databases for chunk-size experiments.
-* Compared retrieval performance across different configurations.
-* Documented the evaluation results.
-* Refined the retrieval logic based on the evaluation findings.
-* Selected **TOP_K = 5** for the refined retrieval implementation.
-* Implemented the final refined retrieval script using ChromaDB and Sentence Transformers.
-
----
-
-# Week 06 - RAG Generation with OpenRouter
-
-### Completed Tasks
-
-* Integrated the OpenRouter API.
-* Connected the OpenRouter LLM with the Week 5 retrieval system.
-* Reused the existing ChromaDB database.
-* Reused the `all-MiniLM-L6-v2` embedding model.
-* Retrieved the top 5 relevant chunks for each query.
-* Implemented a system prompt.
-* Implemented context injection.
-* Added clear instructions for the language model.
-* Implemented prompt engineering best practices.
-* Added API error handling.
-* Added missing API key handling.
-* Added authentication error handling.
-* Added rate-limit handling.
-* Added request/token-limit error handling.
-* Added timeout handling.
-* Added connection error handling.
-* Added malformed response handling.
-* Added server error handling.
-* Measured retrieval latency.
-* Measured generation latency.
-* Measured total end-to-end latency.
-* Added logging for RAG queries and performance.
-* Created a command-line interface.
-* Tested successful API requests.
-* Tested API error handling.
-* Tested timeout and connection handling.
-* Tested CLI input handling.
-
----
-
-# Week 07 - Hallucination Detection & Mitigation
-
-### Completed Tasks
-
-* Created a separate Week 7 project based on the Week 6 RAG system.
-* Continued using the existing ChromaDB retrieval approach.
-* Added instructions to the LLM to use only the retrieved context.
-* Added `"I don't know."` behavior when the answer is not available in the context.
-* Added protection against unsupported answers.
-* Added handling for off-topic questions.
-* Implemented structured JSON output from the LLM.
-* Added answer and source information to the structured response.
-* Added a `supported` field to identify whether an answer is supported by the context.
-* Implemented a hallucination checking step.
-* Compared generated answers against the retrieved context.
-* Rejected answers that were not supported by the retrieved information.
-* Returned `"I don't know."` when an answer could not be supported.
-* Added logging for unsupported generated answers.
-* Updated the command-line interface to display sources and hallucination-check status.
-* Tested the system with questions outside the knowledge base.
-* Kept the Week 6 project unchanged while developing the Week 7 improvements.
-
----
-
-# Week 08 - NLP Topic Modeling
-
-### Completed Tasks
-
-* Applied **BERTopic** to the complete AG News corpus.
-* Generated topic assignments for the entire corpus.
-* Discovered underlying themes and topic clusters.
-* Generated topic information and representative topic terms.
-* Created visualizations for the discovered topic clusters.
-* Validated topic assignments through manual document review.
-* Reviewed **20 random documents per topic cluster** as part of topic validation.
-* Considered extremely short documents as an edge case.
-* Considered documents containing heavy or specialized jargon as an edge case.
-* Integrated topic information into the existing ChromaDB collection.
-* Added `topic_id` metadata to the documents.
-* Added `topic_name` metadata to the documents.
-* Verified that the topic assignment data matched the **120,526 documents** in ChromaDB.
-* Verified that ChromaDB document IDs followed the expected structure.
-* Tested topic-based filtering using ChromaDB metadata.
-* Confirmed that filtered documents belonged to the requested topic.
-
-### Topic Metadata Example
+### Folder
 
 ```text
-topic_id: 0
-
-topic_name: its | to | on | the | oil
+Week1_Environment_Data_Acquisition/
 ```
 
-### Topic Filtering Verification
+### Objective
 
-An additional verification test was performed using:
+The first week focused on setting up the development environment and acquiring the AG News dataset.
 
-```python
-where={
-    "topic_id": 0
-}
-```
+### Work Completed
 
-The test successfully returned documents belonging to topic `0`, and all returned documents were verified to contain the expected `topic_id`.
+* Set up the Python development environment
+* Installed required libraries
+* Downloaded and inspected the AG News dataset
+* Explored the dataset structure
+* Identified available fields and news categories
+* Performed initial dataset inspection
 
-```text
-SUCCESS: All returned documents belong to topic_id = 0
-```
+### Main Outcome
+
+A clean working environment and the initial AG News dataset were prepared for the following preprocessing stages.
 
 ---
 
-# Week 09 - NLP Analysis: Named Entity Recognition
+# Week 2 — Data Cleaning & Preprocessing
 
-### Completed Tasks
-
-* Implemented **Named Entity Recognition (NER)** using spaCy.
-* Created a manually labeled evaluation set containing **50 samples**.
-* Evaluated NER predictions using **Precision, Recall, and F1-score**.
-* Calculated NER evaluation metrics using True Positives, False Positives, and False Negatives.
-* Applied NER to the complete corpus containing **120,526 documents**.
-* Extracted entities and their corresponding entity types.
-* Stored extracted entity information alongside document chunks.
-* Added `entities` metadata to the existing ChromaDB collection.
-* Added `entity_types` metadata to the existing ChromaDB collection.
-* Reused the existing `ag_news` ChromaDB collection instead of creating a new database.
-* Updated the retrieval logic to optionally boost chunks containing query entities.
-* Implemented entity-based reranking of retrieved chunks.
-* Tested entity-aware retrieval using multiple queries.
-* Evaluated the effect of entity boosting on retrieval rankings.
-* Documented the accuracy and usefulness of the extracted entity metadata.
-
-### NER Evaluation Results
-
-The NER system was evaluated using 50 manually labeled samples.
-
-| Metric          | Result |
-| --------------- | -----: |
-| Samples         |     50 |
-| True Positives  |    174 |
-| False Positives |    111 |
-| False Negatives |     91 |
-| Precision       | 0.6105 |
-| Recall          | 0.6566 |
-| F1-score        | 0.6327 |
-
-### Entity Extraction Results
-
-NER was applied to all **120,526 documents** in the corpus.
+### Folder
 
 ```text
-Documents containing detected entities: 118,934
-
-Documents without detected entities:      1,592
+Week2_Data-Cleaning_Preprocessing/
 ```
 
-The extracted metadata includes:
+### Objective
+
+Clean and prepare the AG News text before creating embeddings.
+
+### Work Completed
+
+* Removed unnecessary data
+* Handled missing values
+* Removed duplicate records
+* Normalized text
+* Cleaned textual content
+* Prepared the dataset for chunking and embedding
+
+### Main Outcome
+
+The raw news dataset was transformed into a cleaner dataset suitable for downstream NLP processing.
+
+---
+
+# Week 3 — Chunking & Embeddings
+
+### Folder
 
 ```text
-entities
-entity_types
+Week3_Chunking_Embeddings/
+```
+
+### Objective
+
+Convert news documents into manageable chunks and generate vector embeddings.
+
+### Work Completed
+
+* Implemented text chunking
+* Used chunk overlap to preserve contextual information
+* Generated sentence embeddings
+* Used the `all-MiniLM-L6-v2` embedding model
+* Prepared vector representations for database storage
+
+### Main Outcome
+
+The processed news documents were converted into vector embeddings that could be searched using semantic similarity.
+
+---
+
+# Week 4 — Vector Database
+
+### Folder
+
+```text
+Week4_Vector_Database/
+```
+
+### Objective
+
+Store the generated embeddings in a vector database for efficient semantic retrieval.
+
+### Work Completed
+
+* Set up ChromaDB
+* Created the `ag_news` collection
+* Stored document chunks and embeddings
+* Added document metadata
+* Implemented vector similarity search
+* Tested retrieval from ChromaDB
+
+The collection eventually contained approximately **120,526 documents/chunks**.
+
+### Main Outcome
+
+A functional vector database was created for semantic search over the AG News dataset.
+
+---
+
+# Week 5 — Retrieval Evaluation
+
+### Folder
+
+```text
+Week5_Retrieval_Evaluation/
+```
+
+### Objective
+
+Evaluate whether the vector database retrieves relevant documents for user queries.
+
+### Work Completed
+
+* Created test queries
+* Retrieved top relevant documents
+* Evaluated retrieval results
+* Compared query intent with retrieved context
+* Analyzed retrieval quality
+* Experimented with retrieval parameters
+
+### Main Outcome
+
+The retrieval pipeline was evaluated and prepared for integration into the complete RAG system.
+
+---
+
+# Week 6 — RAG Generation
+
+### Folder
+
+```text
+Week6_RAG_Generation/
+```
+
+### Objective
+
+Combine document retrieval with Large Language Model generation.
+
+### RAG Pipeline
+
+```text
+User Query
+     ↓
+Query Embedding
+     ↓
+ChromaDB Retrieval
+     ↓
+Relevant Context
+     ↓
+LLM
+     ↓
+Generated Answer
+```
+
+### Work Completed
+
+* Connected retrieval with LLM generation
+* Retrieved relevant AG News context
+* Passed retrieved context to the LLM
+* Generated answers based on retrieved information
+* Tested different queries
+* Evaluated the complete RAG workflow
+
+### Main Outcome
+
+A working Retrieval-Augmented Generation pipeline was created.
+
+---
+
+# Week 7 — Hallucination Detection & Mitigation
+
+### Folder
+
+```text
+Week7_Hallucination_Detection_Mitigation/
+```
+
+### Objective
+
+Identify and reduce unsupported information in generated answers.
+
+### Work Completed
+
+* Added answer support checking
+* Compared generated answers with retrieved context
+* Identified potentially unsupported responses
+* Implemented hallucination-related evaluation
+* Improved answer grounding
+
+### Main Outcome
+
+The RAG system became more focused on generating answers supported by retrieved information.
+
+---
+
+# Week 8 — NLP Topic Modeling
+
+### Folder
+
+```text
+Week8_NLP_Topic_Modeling/
+```
+
+### Objective
+
+Perform deeper NLP analysis on the news dataset using topic modeling.
+
+### Work Completed
+
+* Applied topic modeling
+* Used BERTopic
+* Identified major topics within the news dataset
+* Analyzed topic distributions
+* Examined outlier documents
+* Generated topic information
+
+### Results
+
+The topic modeling stage produced:
+
+* **71 topic entries**
+* Approximately **38,315 outlier documents**
+
+### Main Outcome
+
+The news dataset was analyzed beyond simple retrieval by identifying underlying semantic topics.
+
+---
+
+# Week 9 — NLP Analysis & Named Entity Recognition
+
+### Folder
+
+```text
+Week9_NLP_Analysis/
+```
+
+### Objective
+
+Enhance the RAG system with NLP-based entity analysis.
+
+### Work Completed
+
+* Applied spaCy Named Entity Recognition
+* Extracted entities from news documents
+* Identified entity types
+* Added entity information to document metadata
+* Analyzed documents with and without detected entities
+* Used entity information to improve retrieval
+
+### NER Evaluation
+
+The implemented NER system achieved approximately:
+
+```text
+Precision: 0.6105
+Recall:    0.6566
+F1 Score:  0.6327
+```
+
+The dataset contained approximately:
+
+```text
+Documents with entities:    118,934
+Documents without entities:   1,592
 ```
 
 ### Entity-Aware Retrieval
 
-The retrieval system was extended to use detected query entities as an additional reranking signal.
+Entity boosting was also evaluated.
 
-The system:
+The evaluation showed that entity boosting changed rankings for **3 out of 5 queries**, with **20 out of 25 top-5 retrieval results matching** the evaluated expected results.
 
-```text
-User Query
-    ↓
-Query Entity Extraction
-    ↓
-ChromaDB Candidate Retrieval
-    ↓
-Entity Matching
-    ↓
-Entity Boost
-    ↓
-Reranking
-    ↓
-Top Results
-```
-
-Five test queries were used to evaluate the entity-aware retrieval:
+The implemented entity boost value was:
 
 ```text
-Iraq oil
-Microsoft technology
-US economy
-China business
-football players
+ENTITY_BOOST = 0.20
 ```
 
-The experiment showed that rankings changed for **3 out of 5 queries**. Across the evaluated top-5 results, **20 out of 25** contained a matching entity.
+### Main Outcome
 
-These results demonstrate that entity metadata can influence retrieval when relevant entities are detected. The experiment measures retrieval behavior and usefulness; it does not by itself establish an improvement in retrieval accuracy because no manually labeled retrieval ground truth was used for this experiment.
-
-### Limitations
-
-The NER model is a pretrained general-purpose spaCy model and was not specifically trained on the AG News dataset. As a result, some entity predictions can be noisy or incorrectly classified.
-
-The entity-boost mechanism is a heuristic reranking approach rather than a learned ranking model.
-
-The complete Week 9 implementation and evaluation details are available in:
-
-```text
-Week9_NLP_Analysis/README.md
-```
+Entity information was integrated into the retrieval process to make retrieval more context-aware.
 
 ---
 
-# Week 10 - RAG API Development
+# Week 10 — API Development
 
-Week 10 focused on exposing the entity-aware RAG system developed in Week 9 through a **FastAPI REST API**.
+### Folder
 
-The goal was to move from a command-line RAG application toward an API-based service that can be accessed by external applications.
+```text
+Week10_API_Development/
+```
 
-### Completed Tasks
+### Objective
 
-* Created a FastAPI application for the Week 9 RAG system.
-* Connected the API to the existing `ag_news` ChromaDB collection.
-* Reused the existing `all-MiniLM-L6-v2` embedding model.
-* Reused the spaCy NER model.
-* Connected the entity-aware retrieval pipeline to the API.
-* Created a Pydantic request model for RAG queries.
-* Created structured Pydantic response models.
-* Implemented a `POST /query` endpoint.
-* Implemented a `GET /health` endpoint.
-* Implemented a `GET /metadata` endpoint.
-* Implemented a root `GET /` endpoint.
-* Added automatic API documentation through FastAPI Swagger UI.
-* Added structured retrieval information to the API response.
-* Added source information to the response.
-* Added `supported` status to the response.
-* Added semantic, entity, and final retrieval scores.
-* Added matched entity information.
-* Added retrieval timing.
-* Added generation timing.
-* Added total processing time.
-* Added API latency measurement.
-* Connected the API to the existing RAG generation pipeline.
-* Tested the API through Swagger UI.
-* Verified that the FastAPI application starts successfully.
-* Verified that the RAG system loads correctly.
-* Verified that ChromaDB connects successfully.
-* Verified that the `ag_news` collection contains approximately **120,526 chunks**.
-* Added API-level validation using Pydantic.
+Convert the working RAG pipeline into a REST API using FastAPI.
+
+### Technology
+
+* FastAPI
+* Uvicorn
+* ChromaDB
+* Sentence Transformers
+* OpenRouter
+* Pydantic
+* Python
 
 ### API Endpoints
 
@@ -364,363 +383,416 @@ GET  /metadata
 POST /query
 ```
 
-### Health Check
-
-The `/health` endpoint verifies the API and RAG system status.
-
-Example response:
-
-```json
-{
-  "status": "healthy",
-  "service": "Week 10 RAG API",
-  "rag_system": "ready",
-  "chromadb": "connected"
-}
-```
-
-### RAG Query
-
-The `/query` endpoint accepts a user question through a POST request.
-
-Example:
-
-```json
-{
-  "query": "What are the latest developments in technology?"
-}
-```
-
-The response contains the generated answer, source information, retrieved chunks, retrieval scores, entity information, and timing measurements.
-
-### API Architecture
+### Main Configuration
 
 ```text
-User / Client
-     ↓
-FastAPI
-     ↓
-POST /query
-     ↓
-Query Processing
-     ↓
-Entity Extraction
-     ↓
-ChromaDB Candidate Retrieval
-     ↓
-Entity-Aware Reranking
-     ↓
-Relevant Context
-     ↓
-LLM Generation
-     ↓
-Structured API Response
+TOP_K = 5
+CANDIDATE_K = 30
+LLM_MODEL = openrouter/free
 ```
 
-### Swagger Documentation
+### Main Outcome
 
-FastAPI provides interactive API documentation through Swagger UI.
+The RAG system was converted into a working API that can receive user questions and return generated answers.
 
-The API can be tested locally using:
-
-```text
-http://127.0.0.1:8000/docs
-```
-
-The OpenAPI specification is automatically generated by FastAPI.
-
-### Week 10 Learning Outcomes
-
-This week provided practical experience with:
-
-* FastAPI
-* REST APIs
-* HTTP methods
-* POST requests
-* GET requests
-* Pydantic models
-* Request validation
-* Response schemas
-* Swagger/OpenAPI documentation
-* Connecting an NLP/RAG pipeline to an API
-* API health checks
-* API metadata
-* Structured JSON responses
-* Retrieval latency measurement
-* Generation latency measurement
-* End-to-end API latency
-
-The complete Week 10 implementation and API-specific details are available in:
-
-```text
-Week10_API_Development/README.md
-```
+The API was also tested successfully with the RAG pipeline and ChromaDB.
 
 ---
 
-# Dependencies
+# Week 11 — System Evaluation & Testing
 
-The project uses different Python libraries across the weekly tasks.
+### Folder
 
-Some of the main dependencies include:
+```text
+Week11_System_Testing/
+```
 
-* pandas
-* NumPy
-* spaCy
-* NLTK
-* sentence-transformers
-* langchain-text-splitters
-* ChromaDB
-* PyTorch
-* requests
-* python-dotenv
-* BERTopic
-* UMAP
-* HDBSCAN
-* FastAPI
-* Uvicorn
-* Pydantic
+### Objective
 
-Individual weeks may contain additional dependencies in their respective `requirements.txt` files.
+Evaluate and test the complete Week 10 FastAPI RAG system.
 
-Install the required libraries for a specific week using the instructions provided in that week's README.
+Week 11 focuses on measuring the system's **retrieval performance, answer quality, latency, API functionality, concurrent requests, and limitations**.
+
+### Work Completed
+
+* Created a 30-question evaluation benchmark
+* Added Business, Sports, Technology, and World categories
+* Evaluated retrieval performance
+* Evaluated generated answer quality
+* Measured retrieval latency
+* Measured generation latency
+* Measured end-to-end latency
+* Calculated average latency
+* Calculated median latency
+* Calculated P95 latency
+* Recorded minimum and maximum latency
+* Generated Markdown evaluation reports
+* Generated JSON evaluation reports
+* Generated CSV results
+* Added pytest API tests
+* Added FastAPI TestClient testing
+* Added test isolation through `conftest.py`
+* Added concurrent request testing
+* Added API logging
+* Documented system limitations
 
 ---
 
-# Running the Projects
+## Week 11 Evaluation Benchmark
 
-Each week's folder contains its own source code and README with instructions for running that week's task.
+The evaluation contains **30 questions**.
 
-For example, to run Week 3:
+| Category   | Questions |
+| ---------- | --------: |
+| Business   |         8 |
+| Sports     |         7 |
+| Technology |         8 |
+| World      |         7 |
+| **Total**  |    **30** |
 
-```bash
-cd Week3_Chunking_Embeddings
-python main.py
-```
+---
 
-To run Week 6:
+## Week 11 Evaluation Metrics
 
-```bash
-cd Week6_RAG_Generation
-python cli.py
-```
+### Retrieval Accuracy Proxy
 
-To run Week 7:
+The evaluation checks whether the retrieved context contains information related to the expected topic or keywords.
 
-```bash
-cd Week7_Hallucination_Detection_Mitigation
-python cli.py
-```
+This is explicitly treated as a **retrieval accuracy proxy**, not true Precision@K or Recall@K, because manually labeled gold document IDs were not created for all benchmark questions.
 
-For Week 8, refer to the README inside:
+### Generation Quality Proxy
+
+Generated answers are evaluated using automated signals such as:
+
+* Existing support information
+* Expected keyword coverage
+
+This provides an automated indication of answer quality but is not a replacement for human evaluation.
+
+### Latency
+
+The system measures:
+
+* Retrieval latency
+* Generation latency
+* End-to-end latency
+* Average latency
+* Median latency
+* P95 latency
+* Minimum latency
+* Maximum latency
+
+---
+
+# Week 11 Structure
 
 ```text
-Week8_NLP_Topic_Modeling/
+Week11_System_Testing/
+│
+├── app/
+│   ├── __init__.py
+│   ├── config.py
+│   ├── logger.py
+│   ├── main.py
+│   ├── rag.py
+│   └── schemas.py
+│
+├── reports/
+│   ├── evaluation_report.json
+│   ├── evaluation_report.md
+│   └── evaluation_results.csv
+│
+├── tests/
+│   ├── conftest.py
+│   ├── test_api.py
+│   └── test_concurrent.py
+│
+├── evaluate.py
+├── limitations.md
+├── README.md
+├── requirements.txt
+├── .env.example
+└── .gitignore
 ```
 
-For Week 9, refer to the README inside:
+The real `.env` file is kept locally and is excluded from version control because it contains the API key.
 
-```text
-Week9_NLP_Analysis/
+---
+
+# Running Week 11
+
+Navigate to the Week 11 directory:
+
+```bash
+cd Week11_System_Testing
 ```
 
-For Week 10, start the FastAPI server from:
-
-```text
-Week10_API_Development/
-```
-
-using:
+Start the FastAPI server:
 
 ```bash
 uvicorn app.main:app --reload
 ```
 
-The API will be available at:
+Then run the evaluation from another terminal:
 
-```text
-http://127.0.0.1:8000
+```bash
+python evaluate.py
 ```
 
-Swagger documentation:
+Run API tests:
 
-```text
-http://127.0.0.1:8000/docs
+```bash
+pytest tests/test_api.py -v
+```
+
+Run concurrent tests:
+
+```bash
+pytest tests/test_concurrent.py -v
+```
+
+Run all tests:
+
+```bash
+pytest -v
 ```
 
 ---
 
-# Dataset
+# Week 11 Evaluation Reports
 
-This project uses the **AG News** dataset for:
+The evaluation generates:
 
-* Text preprocessing
-* Chunking
-* Embedding generation
-* Vector database storage
+```text
+reports/
+├── evaluation_report.md
+├── evaluation_report.json
+└── evaluation_results.csv
+```
+
+### Markdown Report
+
+Human-readable evaluation summary.
+
+### JSON Report
+
+Machine-readable evaluation results.
+
+### CSV Results
+
+Query-level results suitable for spreadsheet analysis and further processing.
+
+---
+
+# Complete System Architecture
+
+The final RAG system developed during the internship follows this architecture:
+
+```text
+                    AG News Dataset
+                           │
+                           ▼
+                Data Cleaning & Processing
+                           │
+                           ▼
+                     Text Chunking
+                           │
+                           ▼
+                  Sentence Embeddings
+                           │
+                           ▼
+                       ChromaDB
+                           │
+                           ▼
+                    Vector Retrieval
+                           │
+                           ▼
+                 Entity-Aware Retrieval
+                           │
+                           ▼
+                    Retrieved Context
+                           │
+                           ▼
+                         LLM
+                           │
+                           ▼
+                   Generated Answer
+                           │
+                           ▼
+                       FastAPI
+                           │
+                           ▼
+                 Evaluation & Testing
+                           │
+                ┌──────────┼──────────┐
+                ▼          ▼          ▼
+             Retrieval  Generation  Latency
+             Evaluation Evaluation  Analysis
+                │          │          │
+                └──────────┼──────────┘
+                           ▼
+                    Reports & Results
+```
+
+---
+
+# Technologies Used
+
+The project uses the following technologies throughout the internship:
+
+### Programming
+
+* Python
+
+### Data Processing
+
+* Pandas
+* NumPy
+
+### NLP
+
+* spaCy
+* BERTopic
+* Sentence Transformers
+
+### Embeddings
+
+* `all-MiniLM-L6-v2`
+
+### Vector Database
+
+* ChromaDB
+
+### RAG / LLM
+
+* OpenRouter
+* LLM-based generation
+
+### API
+
+* FastAPI
+* Uvicorn
+* Pydantic
+
+### Testing
+
+* pytest
+* FastAPI TestClient
+
+### Evaluation
+
+* Pandas
+* CSV
+* JSON
+* Markdown reports
+
+---
+
+# Overall Internship Progression
+
+The project evolved through the following stages:
+
+```text
+Week 1
+Environment & Data Acquisition
+        ↓
+Week 2
+Data Cleaning & Preprocessing
+        ↓
+Week 3
+Chunking & Embeddings
+        ↓
+Week 4
+Vector Database
+        ↓
+Week 5
+Retrieval Evaluation
+        ↓
+Week 6
+RAG Generation
+        ↓
+Week 7
+Hallucination Detection & Mitigation
+        ↓
+Week 8
+NLP Topic Modeling
+        ↓
+Week 9
+NLP Analysis & NER
+        ↓
+Week 10
+FastAPI API Development
+        ↓
+Week 11
+System Evaluation & Testing
+```
+
+---
+
+# Key Project Outcomes
+
+By the end of Week 11, the internship project progressed from a raw news dataset to a tested RAG-based API system.
+
+The final system includes:
+
+* Processed AG News data
+* Chunked documents
+* Sentence embeddings
+* ChromaDB vector storage
+* Semantic retrieval
 * Retrieval evaluation
-* Retrieval-Augmented Generation
+* RAG-based generation
+* Hallucination/support checking
 * Topic modeling
 * Named Entity Recognition
 * Entity-aware retrieval
-* API-based RAG serving
-
-The corpus used during the NLP analysis stages contained **120,526 documents/chunks**.
-
----
-
-# RAG Pipeline
-
-The RAG system developed during Weeks 6 and 7 follows these main steps:
-
-```text
-User Question
-      ↓
-Question Embedding
-      ↓
-ChromaDB Retrieval
-      ↓
-Top 5 Relevant Chunks
-      ↓
-Prompt Construction
-      ↓
-LLM Generation
-      ↓
-Structured JSON Response
-      ↓
-Hallucination Check
-      ↓
-Final Answer
-```
-
-If the answer cannot be supported by the retrieved context, the Week 7 system returns:
-
-```text
-I don't know.
-```
-
-The Week 9 improvements add entity-aware retrieval and reranking to this pipeline.
-
-The Week 10 API exposes this RAG functionality through HTTP endpoints.
+* FastAPI endpoints
+* Automated API testing
+* Concurrent request testing
+* 30-question system evaluation
+* Retrieval quality analysis
+* Generation quality analysis
+* Latency analysis
+* JSON, Markdown, and CSV reports
+* Documented system limitations
 
 ---
 
-# Topic Modeling Pipeline
+# Future Improvements
 
-The Week 8 topic modeling workflow extends the project with NLP topic discovery:
+The system can be further improved by adding:
 
-```text
-AG News Corpus
-      ↓
-Cleaned Documents
-      ↓
-BERTopic
-      ↓
-Topic Assignment
-      ↓
-Topic Validation
-      ↓
-Topic Visualization
-      ↓
-Topic Metadata
-      ↓
-ChromaDB Integration
-      ↓
-Topic-Based Filtering
-```
+* Larger evaluation benchmarks
+* Human-based answer evaluation
+* More accurate retrieval metrics using labeled gold documents
+* Automated regression testing
+* Performance monitoring
+* Authentication
+* API rate limiting
+* Asynchronous request processing
+* Production deployment
+* Cloud-based vector database
+* Better hallucination evaluation
+* Evaluation dashboards
+* Historical performance tracking
+* Automated CI/CD testing
 
 ---
 
-# Named Entity Recognition Pipeline
+# Conclusion
 
-The Week 9 workflow extends the NLP pipeline with named entity extraction and entity-aware retrieval:
+This internship project demonstrates the complete development lifecycle of a practical **Retrieval-Augmented Generation system**.
 
-```text
-AG News Corpus
-      ↓
-NER with spaCy
-      ↓
-Entity Extraction
-      ↓
-NER Evaluation
-      ↓
-Entity Metadata
-      ↓
-ChromaDB Integration
-      ↓
-Query Entity Extraction
-      ↓
-Entity-Based Reranking
-      ↓
-Retrieved Results
-```
+The project started with data acquisition and preprocessing and gradually progressed through embeddings, vector search, retrieval evaluation, LLM generation, hallucination mitigation, NLP analysis, API development, and system testing.
+
+By Week 11, the RAG system had evolved into a **working, evaluated, and tested API-based application**, with automated evaluation reports and test suites providing a foundation for further development and production deployment.
 
 ---
 
-# API Pipeline
+## Internship
 
-The Week 10 API wraps the existing RAG system into a service:
+**Parallax Labs Internship**
 
-```text
-Client
-  ↓
-FastAPI
-  ↓
-POST /query
-  ↓
-Query Validation
-  ↓
-Entity Extraction
-  ↓
-Semantic Retrieval
-  ↓
-Entity-Aware Reranking
-  ↓
-Context Construction
-  ↓
-LLM Generation
-  ↓
-Hallucination / Support Check
-  ↓
-Structured JSON Response
-```
+**Project:** RAG-Based News Intelligence System
 
-This creates a progression from individual NLP components to a complete RAG system and finally to an API-accessible AI application.
-
----
-
-# Overall Internship Learning Progression
-
-The internship work progressed through the following stages:
-
-```text
-Environment & Data
-        ↓
-Data Cleaning
-        ↓
-Chunking & Embeddings
-        ↓
-Vector Database
-        ↓
-Retrieval Evaluation
-        ↓
-RAG Generation
-        ↓
-Hallucination Detection
-        ↓
-Topic Modeling
-        ↓
-Named Entity Recognition
-        ↓
-Entity-Aware Retrieval
-        ↓
-FastAPI RAG Service
-```
-
-This progression covers the development of a RAG application from data preparation and retrieval infrastructure through NLP analysis, generation, evaluation, and API deployment.
-
----
-
-# Author
-
-**Mehroz Shahid**
+**Final Stage:** System Evaluation & Testing
